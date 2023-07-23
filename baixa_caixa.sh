@@ -1,3 +1,3 @@
 #!/bin/bash
-source envmetabaseurl/bin/activate
-python metabaseurl.py
+source env/bin/activate
+python baixa_selenium.py
