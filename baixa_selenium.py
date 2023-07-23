@@ -16,12 +16,11 @@ senha_caixa = os.getenv('SENHA_CAIXA')
 login_caixa = os.getenv('LOGIN_CAIXA')
 
 app = Flask(__name__)
-# CORS(app)
+
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 urlbase = "https://ecobranca.caixa.gov.br/ecobranca/index.jsp"
 
-# servico = Service(ChromeDriverManager().install())
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 
 
@@ -53,9 +52,6 @@ def baixa():
 		# navega até a tela de baixa de boleto
 		driver.get('https://ecobranca.caixa.gov.br/ecobranca/baixa_titulo')
 
-
-		# nosso_numero = "14000000000088120"
-		# nosso_numero = "14000000000088105"
 		nosso_numero = nosso_numero_get
 
 		driver.find_element('xpath', "/html/body/form/span/table[2]/tbody/tr[3]/td/table[2]/tbody/tr/td[2]/table[1]/tbody/tr[15]/td[2]/input").send_keys(nosso_numero)
