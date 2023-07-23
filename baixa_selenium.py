@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import time
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -7,6 +9,11 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from flask import Flask, request, redirect, jsonify
 from flask_cors import CORS
+
+load_dotenv()
+
+senha_caixa = os.getenv('SENHA_CAIXA')
+login_caixa = os.getenv('LOGIN_CAIXA')
 
 app = Flask(__name__)
 # CORS(app)
@@ -36,9 +43,9 @@ def baixa():
 		time.sleep(5)
 
 		# login
-		driver.find_element('xpath', '/html/body/table[3]/tbody/tr[3]/td/form/table/tbody/tr/td[2]/table[1]/tbody/tr[3]/td/input[1]').send_keys('69534101249')
+		driver.find_element('xpath', '/html/body/table[3]/tbody/tr[3]/td/form/table/tbody/tr/td[2]/table[1]/tbody/tr[3]/td/input[1]').send_keys(login_caixa)
 
-		driver.find_element('xpath', '/html/body/table[3]/tbody/tr[3]/td/form/table/tbody/tr/td[2]/table[1]/tbody/tr[5]/td/input').send_keys('261162')
+		driver.find_element('xpath', '/html/body/table[3]/tbody/tr[3]/td/form/table/tbody/tr/td[2]/table[1]/tbody/tr[5]/td/input').send_keys(senha_caixa)
 
 		driver.find_element('xpath', '/html/body/table[3]/tbody/tr[3]/td/form/table/tbody/tr/td[2]/table[2]/tbody/tr[2]/td/a').click()
 
